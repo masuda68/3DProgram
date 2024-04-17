@@ -27,8 +27,6 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_  HINSTANCE, _In_ LPSTR , _In_ int)
 
 	// COM解放
 	CoUninitialize();
-	//消すで
-	m_test = 10;
 	return 0;
 }
 
