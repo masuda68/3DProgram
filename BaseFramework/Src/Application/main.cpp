@@ -27,7 +27,8 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_  HINSTANCE, _In_ LPSTR , _In_ int)
 
 	// COM解放
 	CoUninitialize();
-
+	//消すで
+	m_test = 10;
 	return 0;
 }
 
@@ -107,6 +108,7 @@ void Application::PreDraw()
 // ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// /////
 void Application::Draw()
 {
+
 	// ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== =====
 	// 光を遮るオブジェクト(不透明な物体や2Dキャラ)はBeginとEndの間にまとめてDrawする
 	KdShaderManager::Instance().m_StandardShader.BeginGenerateDepthMapFromLight();
