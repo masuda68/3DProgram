@@ -52,10 +52,14 @@ private:
 	bool		m_endFlag = false;
 
 	//カメラ
-	std::shared_ptr<KdCamera> m_spCamera = nullptr;
-		int* p;
+	std::shared_ptr<KdCamera>			m_spCamera = nullptr;
+	int* p;
 	//ポリゴンデータ
-		std::shared_ptr<KdSquarePolygon> m_spPoly = nullptr;
+	std::shared_ptr<KdSquarePolygon>	m_spPoly = nullptr;
+
+	//地形データ
+	std::shared_ptr<KdModelData>		m_spModel = nullptr;
+
 		Math::Vector3 m_pos;;
 //=====================================================
 // シングルトンパターン
