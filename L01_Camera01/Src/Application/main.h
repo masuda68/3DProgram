@@ -59,14 +59,20 @@ private:
 
 	//地形データ
 	std::shared_ptr<KdModelData>		m_spModel = nullptr;
+	float m_Avalue;
+	Math::Matrix m_Scale;
+	Math::Matrix m_RotationX;
+	Math::Matrix m_Trans;
+	Math::Matrix m_HamWorld;
 
-		Math::Vector3 m_pos;;
 //=====================================================
 // シングルトンパターン
 //=====================================================
 private:
 	// 
+
 	Application() {};
+
 
 public:
 	static Application &Instance(){
