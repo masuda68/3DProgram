@@ -1,4 +1,6 @@
 ﻿#include "main.h"
+#include "Hamu.h"
+#include "Terrain.h"
 
 // ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// /////
 // エントリーポイント
@@ -66,43 +68,8 @@ void Application::Update()
 	m_Avalue+=0.1;
 	
 	
-	//ハム太郎の更新
-	float moveSpd = 0.05;
-	Math::Vector3 m_Vec;
-	Math::Vector3 m_pos=m_HamWorld.Translation();
-
-	if (GetAsyncKeyState('A'))
-	{
-		//m_pos.y += 0.05;
-		m_Vec.x -= 1;
-		//m_HamWorld._43-=0.1;
-
-	}
-	if (GetAsyncKeyState('D'))
-	{
-		//m_Vec.y += 0.05;
-		m_Vec.x += 1;
-		//m_HamWorld._43+=0.1;
-	}
-	if (GetAsyncKeyState('W'))
-	{
-		//m_Vec.y += 0.05;
-		m_Vec.z += 1;
-		//m_HamWorld._41+=0.1;
-	}
-	if (GetAsyncKeyState('S'))
-	{
-		//m_Vec.y += 0.05;
-		m_Vec.z -= 1;
-		////m_HamWorld._41-=0.1;
-	}
-	m_Vec*= moveSpd;
-	m_pos += m_Vec;
-	Math::Matrix _mScale = Math::Matrix::CreateScale(1);
-	Math::Matrix _mRotationX = Math::Matrix::CreateRotationX(DirectX::XMConvertToRadians(15));
-	m_HamWorld = Math::Matrix::CreateTranslation(m_pos);
-	//m_HamWorld = _mScale * _mRotationX * _mTrans;
-
+	//ベクトル（方向ベクトル）必ず「長さ（力）が1でなければならない
+	
 	//カメラ行列の更新
 	{
 		//大きさ
@@ -112,10 +79,19 @@ void Application::Update()
 		//Math::Matrix _mRotationY = Math::Matrix::CreateRotationY((m_Avalue));
 
 		//基準点（ターゲット）からどれだけ離れているか
-		Math::Matrix _mTrans = Math::Matrix::CreateTranslation(m_pos.x, 5,m_pos.z-7);
+		Math::Matrix _mTrans = Math::Matrix::CreateTranslation(0,6,-5);
 		//カメラのワールド行列を作成、適応させる
-		Math::Matrix _mWorld = _mScale * _mRotationX * _mTrans  ;
+		// (親となる物を合体　これを親との行列関係）
+		Math::Matrix _mWorld = _mScale * _mRotationX * _mTrans;
+		
 		m_spCamera->SetCameraMatrix(_mWorld);
+	}
+	//全ゲームオブジェクトの更新
+	{
+		for (std::shared_ptr<KdGameObject> gameOgj : m_GameObjList)
+		{
+			gameOgj->Update();
+		}
 	}
 }
 
@@ -174,13 +150,11 @@ void Application::Draw()
 	// 陰影のあるオブジェクト(不透明な物体や2Dキャラ)はBeginとEndの間にまとめてDrawする
 	KdShaderManager::Instance().m_StandardShader.BeginLit();
 	{
-		//Math::Matrix _mat = Math::Matrix::Identity;
-
-			//Math::Matrix::CreateTranslation(0, 0, 5);
-
-		KdShaderManager::Instance().m_StandardShader.DrawPolygon(*m_spPoly, m_HamWorld);
-
-		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_spModel);
+		//全ゲームオブジェクトの描画
+		for (std::shared_ptr<KdGameObject> gameOgj : m_GameObjList)
+		{
+			gameOgj->DrawLit();
+		}
 	}
 	KdShaderManager::Instance().m_StandardShader.EndLit();
 
@@ -289,19 +263,18 @@ bool Application::Init(int w, int h)
 	//===================================================================
 	m_spCamera = std::make_shared<KdCamera>();
 	//===================================================================
-	// ポリゴン初期化
+	// ハム太郎初期化
 	//===================================================================
-	m_spPoly = std::make_shared<KdSquarePolygon>();
-	m_spPoly->SetMaterial("Asset/Data/LessonData/Character/Hamu.png");
-	m_spPoly->SetPivot(KdSquarePolygon::PivotType::Center_Bottom);
-
-
+	std::shared_ptr<Hamu> _Hamu = std::make_shared<Hamu>();
+	_Hamu->Init();
+	m_GameObjList.push_back(_Hamu);
 	//===================================================================
 	// 地形初期化
 	//===================================================================
-	m_spModel = std::make_shared< KdModelData>();
-	m_spModel->Load("Asset/Data/LessonData/Terrain/Terrain.gltf");
-
+	std::shared_ptr <Terrain> _Terrain = std::make_shared<Terrain>();
+	_Terrain->Init();
+	m_GameObjList.push_back(_Terrain);
+	
 	return true;
 }
 

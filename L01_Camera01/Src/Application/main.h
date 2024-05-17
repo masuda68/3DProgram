@@ -54,16 +54,16 @@ private:
 	//カメラ
 	std::shared_ptr<KdCamera>			m_spCamera = nullptr;
 	int* p;
-	//ポリゴンデータ
-	std::shared_ptr<KdSquarePolygon>	m_spPoly = nullptr;
+	////ポリゴンデータ
+	//std::shared_ptr<KdSquarePolygon>	m_spPoly = nullptr;
 
-	//地形データ
-	std::shared_ptr<KdModelData>		m_spModel = nullptr;
+	//ゲームオブジェクトリスト
+	std::vector < std::shared_ptr<KdGameObject>> m_GameObjList;
 	float m_Avalue;
 	Math::Matrix m_Scale;
 	Math::Matrix m_RotationX;
 	Math::Matrix m_Trans;
-	Math::Matrix m_HamWorld;
+	
 
 //=====================================================
 // シングルトンパターン
