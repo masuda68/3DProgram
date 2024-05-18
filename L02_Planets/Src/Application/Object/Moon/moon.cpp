@@ -21,7 +21,7 @@ void moon::Update()
 
 	Math::Matrix _mScale = Math::Matrix::CreateScale(2);
 	Math::Matrix _mRotationY = Math::Matrix::CreateRotationY(DirectX::XMConvertToRadians(_deg));
-	Math::Matrix _mTrans = Math::Matrix::CreateTranslation(m_pos.x+5, m_pos.y, m_pos.z);
+	Math::Matrix _mTrans = Math::Matrix::CreateTranslation(m_pos.x+2, m_pos.y, m_pos.z);
 	//月*地球
 	m_mWorld = (_mScale* _mRotationY *_mTrans * _mRotationY) * m_mEarthTrans;
 }

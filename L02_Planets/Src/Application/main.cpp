@@ -75,7 +75,7 @@ void Application::Update()
 		Math::Matrix _mRotationX = Math::Matrix::CreateRotationX(DirectX::XMConvertToRadians(10));
 		//Math::Matrix _mRotationY = Math::Matrix::CreateRotationY((m_Avalue));
 		//基準点（ターゲット）からどれだけ離れているか
-		Math::Matrix _mTrans = Math::Matrix::CreateTranslation(0, 10, -50);
+		Math::Matrix _mTrans = Math::Matrix::CreateTranslation(0, 10, -40);
 		//カメラのワールド行列を作成、適応させる
 		Math::Matrix _mWorld = _mScale * _mRotationX * _mTrans;
 
