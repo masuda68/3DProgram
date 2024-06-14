@@ -165,6 +165,7 @@ void Application::Draw()
 	{
 	}
 	KdShaderManager::Instance().m_postProcessShader.EndBright();
+	KdShaderManager::Instance().m_spriteShader.SetMatrix(Math::Matrix::Identity);
 }
 
 // ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// /////
@@ -211,9 +212,9 @@ bool Application::Init(int w, int h)
 	// フルスクリーン確認
 	//===================================================================
 	bool bFullScreen = false;
-	if (MessageBoxA(m_window.GetWndHandle(), "フルスクリーンにしますか？", "確認", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES) {
-		bFullScreen = true;
-	}
+	//if (MessageBoxA(m_window.GetWndHandle(), "フルスクリーンにしますか？", "確認", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES) {
+	//	bFullScreen = true;
+	//}
 
 	//===================================================================
 	// Direct3D初期化
@@ -270,7 +271,10 @@ bool Application::Init(int w, int h)
 	// キャラクター初期化
 	//===================================================================
 	std::shared_ptr<Character> _character = std::make_shared<Character>();
+	
 	_character->Init();
+	_character->SetCamera(m_spCamera);
+	_character->SetTerrain(_terrain);
 	m_GameObjectList.push_back(_character);
 
 	return true;
