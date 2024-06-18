@@ -64,6 +64,12 @@
     <Filter Include="Src\Application\GameObject\Terrain">
       <UniqueIdentifier>{6593eb98-0102-4b4c-89ae-640dafe94162}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\Camera">
+      <UniqueIdentifier>{cb97d021-7d19-4630-a2f6-3f88ab787748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Camera\TrakingCamera">
+      <UniqueIdentifier>{b9252dc9-dad0-4b4d-8aa3-d1ee735c9997}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -195,6 +201,12 @@
     <ClInclude Include="Src\Application\GameObject\Character\Character.h">
       <Filter>Src\Application\GameObject\Character</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Camera\CameraBase.h">
+      <Filter>Src\Application\GameObject\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Camera\TrakingCamera\TrackingCamera.h">
+      <Filter>Src\Application\GameObject\Camera\TrakingCamera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -304,6 +316,12 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Character\Character.cpp">
       <Filter>Src\Application\GameObject\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Camera\CameraBase.cpp">
+      <Filter>Src\Application\GameObject\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Camera\TrakingCamera\TrackingCamera.cpp">
+      <Filter>Src\Application\GameObject\Camera\TrakingCamera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
