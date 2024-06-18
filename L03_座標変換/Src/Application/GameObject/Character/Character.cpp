@@ -16,8 +16,6 @@ void Character::Init()
 
 void Character::Update()
 {
-	bool _key = false;
-
 	if (GetAsyncKeyState(VK_RBUTTON) & 0x8000)
 	{
 
