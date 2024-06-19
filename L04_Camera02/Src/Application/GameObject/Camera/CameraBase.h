@@ -12,11 +12,20 @@ public:
 	{
 		m_spTarget = target;
 	}
+	const Math::Matrix GetRotationYMatrix()const;
 protected:
+	void UpdateRotateByMouse();
+	const Math::Matrix GetRotaionMatrix()const;
 	std::weak_ptr<KdGameObject>m_spTarget;
 	std::shared_ptr<KdCamera> m_spCamera = nullptr;
 
 	Math::Matrix m_mLocalPos=Math::Matrix::Identity;
 	Math::Matrix m_mRot = Math::Matrix::Identity;
+
+	//カメラ回転用マウス座標
+	POINT m_FixMousePos{};
+private:
+	//カメラの回転用角度
+	Math::Vector3 m_DegAng = Math::Vector3::Zero;
 };
 

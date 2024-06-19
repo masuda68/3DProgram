@@ -1,17 +1,15 @@
-﻿#include "TrackingCamera.h"
+﻿#include "FPSCamera.h"
 
-void TrackingCamera::Init()
+void FPSCamera::Init()
 {
-	//親クラスの初期化呼び出し
 	CameraBase::Init();
 	//基準点（ターゲット）からどれだけ離れているか
-	m_mLocalPos = Math::Matrix::CreateTranslation(0, 6.f, -5.f);
-	//どれだけ傾けているか
-	m_mRot = Math::Matrix::CreateRotationX(DirectX::XMConvertToRadians(45));
-	
+	m_mLocalPos = Math::Matrix::CreateTranslation(0, 1.5f, 0.f);
+	//マウスカーソルを画面中央値に固定する
+	SetCursorPos(m_FixMousePos.x,m_FixMousePos.y);
 }
 
-void TrackingCamera::Update()
+void FPSCamera::Update()
 {
 	//Targetの行列（有効ンな場合利用する)
 	Math::Matrix _targetMat = Math::Matrix::Identity;
@@ -21,9 +19,16 @@ void TrackingCamera::Update()
 		_targetMat = Math::Matrix::CreateTranslation(_spTarget->GetPos());
 	}
 
+	//カメラ回転処理
+	UpdateRotateByMouse();
+	m_mRot = GetRotaionMatrix();
+	
+
 	//_targetMatこれを最後に書く
-	m_mWorld = m_mRot * m_mLocalPos* _targetMat;
+	m_mWorld = m_mRot * m_mLocalPos * _targetMat;
 
 	//親呼び出し
 	CameraBase::Update();
+
+
 }
