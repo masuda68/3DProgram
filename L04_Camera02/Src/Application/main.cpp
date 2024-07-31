@@ -2,8 +2,8 @@
 
 #include "GameObject/Terrain/Terrain.h"
 #include "GameObject/Character/Character.h"
-//#include "GameObject/Camera/TrakingCamera/TrackingCamera.h"
-//#include "GameObject/Camera/FPSCamera/FPSCamera.h"
+#include "GameObject/Camera/TrakingCamera/TrackingCamera.h"
+#include "GameObject/Camera/FPSCamera/FPSCamera.h"
 #include "GameObject/Camera/TPSCamera/TPSCamera.h"
 // ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// /////
 // エントリーポイント
@@ -262,10 +262,17 @@ bool Application::Init(int w, int h)
 	// カメラ初期化
 	//===================================================================
 	std::shared_ptr<TPSCamera> _camera = std::make_shared< TPSCamera>();
+	//std::shared_ptr<FPSCamera> _camera = std::make_shared< FPSCamera>();
 	_camera->Init();
 	_camera->SetTarget(_character);
+	_camera->RegisHitObject(_terrain);
 	_character->SetCamera(_camera);
+
+	
 	m_GameObjectList.push_back(_camera);
+
+
+
 
 	return true;
 }

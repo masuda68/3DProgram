@@ -8,15 +8,23 @@ public:
 	void Init()override;
 	void Update()override;
 	void PreDraw();
+
 	void SetTarget(const std::shared_ptr<KdGameObject>& target)
 	{
 		m_spTarget = target;
 	}
+
+	void RegisHitObject(const std::shared_ptr<KdGameObject>& object)
+	{
+		m_wpHitObjectList.push_back(object);
+	}
+
 	const Math::Matrix GetRotationYMatrix()const;
 protected:
 	void UpdateRotateByMouse();
 	const Math::Matrix GetRotaionMatrix()const;
 	std::weak_ptr<KdGameObject>m_spTarget;
+	std::vector<std::weak_ptr<KdGameObject>> m_wpHitObjectList;
 	std::shared_ptr<KdCamera> m_spCamera = nullptr;
 
 	Math::Matrix m_mLocalPos=Math::Matrix::Identity;

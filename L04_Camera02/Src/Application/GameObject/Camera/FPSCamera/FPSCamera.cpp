@@ -14,6 +14,7 @@ void FPSCamera::Update()
 	//Targetの行列（有効ンな場合利用する)
 	Math::Matrix _targetMat = Math::Matrix::Identity;
 	const std::shared_ptr<KdGameObject> _spTarget = m_spTarget.lock();
+
 	if (_spTarget)
 	{
 		_targetMat = Math::Matrix::CreateTranslation(_spTarget->GetPos());
