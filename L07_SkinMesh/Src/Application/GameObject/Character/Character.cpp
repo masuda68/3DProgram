@@ -14,6 +14,8 @@ void Character::Init()
 		m_spAnimator = std::make_shared<KdAnimator>();
 
 		m_spAnimator->SetAnimation(m_spModel->GetData()->GetAnimation("Walk"));
+
+		m_pDebugWire = std::make_unique<KdDebugWireFrame>();
 	}
 }
 
@@ -23,6 +25,7 @@ void Character::Update()
 	float			_moveSpd = 0.05f;
 	Math::Vector3	_nowPos	= GetPos();
 
+	m_pDebugWire->AddDebugSphere(_nowPos, 0.5f);
 	Math::Vector3 _moveVec = Math::Vector3::Zero;
 	if (GetAsyncKeyState('D')) { _moveVec.x =  1.0f; }
 	if (GetAsyncKeyState('A')) { _moveVec.x = -1.0f; }
