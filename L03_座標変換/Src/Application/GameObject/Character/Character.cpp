@@ -97,8 +97,8 @@ void Character::DrawSprite()
 
 		KdShaderManager::Instance().m_spriteShader.DrawCircle(result.x, result.y, 5, &kRedColor);
 
-		KdShaderManager::Instance().m_spriteShader.SetMatrix(mat);
-		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, 0, 0,50,34 ,&_rec, &_color);
+		//KdShaderManager::Instance().m_spriteShader.SetMatrix(mat);
+		//dShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, 0, 0,50,34 ,&_rec, &_color);
 
 	}
 }
